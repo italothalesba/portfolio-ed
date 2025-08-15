@@ -1,38 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@600;800&display=swap');
+
+html { scroll-behavior: smooth; }
+
+/* --- PALETA DE CORES ATUALIZADA --- */
+:root {
+  --primary-color: #C78B84;     /* Rosa queimado / Dusty rose para destaque */
+  --secondary-color: #4A4A4A;   /* Cinza escuro para texto principal */
+  --background-color: rgb(255, 237, 236); /* A cor que você solicitou como fundo */
+  --surface-color: #FFFFFF;    /* Branco para os cards */
+  --text-color: #555;          /* Cinza médio para parágrafos */
+  --title-font: 'Montserrat', sans-serif;
+  --body-font: 'Roboto', sans-serif;
+  --shadow: 0 10px 30px -15px rgba(199, 139, 132, 0.2); /* Sombra baseada na nova cor primária */
+}
+
+body {
+  margin: 0;
+  font-family: var(--body-font);
+  background-color: var(--background-color); /* FUNDO PRINCIPAL ATUALIZADO */
+  color: var(--text-color);
+}
+
 .App {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+}
+
+/* --- Menu fixo com as novas cores --- */
+.main-nav {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  z-index: 1000;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+.main-nav.scrolled {
+  background: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+.main-nav .nav-logo { font-family: var(--title-font); font-weight: 800; font-size: 1.5em; z-index: 1001; }
+
+/* --- Header com o novo gradiente --- */
+.header-container {
+  padding-top: 120px;
+  padding-bottom: 60px;
+  /* Gradiente com a nova cor primária */
+  background: linear-gradient(145deg, var(--primary-color), #b57a73);
+  color: white;
+  border-radius: 0 0 40px 40px;
+  box-shadow: var(--shadow);
+  margin-bottom: 50px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* --- skill-item com a nova cor --- */
+.skill-item {
+  background-color: rgba(199, 139, 132, 0.1); /* Fundo com a nova cor primária e opacidade */
+  color: var(--primary-color);
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: 700;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: transform .2s ease, background-color .2s;
+}
+.skill-item:hover {
+  transform: scale(1.05);
+  background-color: rgba(199, 139, 132, 0.2);
+}
+
+/* --- Botão de contato com a nova cor --- */
+.contact-button {
+  background: var(--primary-color);
+  color: #fff;
+}
+.contact-button:hover {
+  background: #b57a73; /* Tom mais escuro da nova cor */
+}
+
+/* --- Botão flutuante do WhatsApp --- */
+.whatsapp-float-button {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  background-color: #25D366;
+  color: white;
+  border-radius: 50%;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: 2em;
+  text-decoration: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.whatsapp-float-button:hover {
+  transform: scale(1.1) rotate(10deg);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/* --- CÓDIGO CSS ADICIONAL (sem alterações de cor, apenas para manter a funcionalidade) --- */
+.main-nav.scrolled .nav-logo, .main-nav.scrolled .nav-links a { color: var(--secondary-color); }
+.main-nav.scrolled .nav-links a:hover { color: var(--primary-color); }
+.main-nav.scrolled .menu-toggle { color: var(--secondary-color); }
+.main-nav:not(.scrolled) .nav-logo, .main-nav:not(.scrolled) .nav-links a, .main-nav:not(.scrolled) .menu-toggle { color: white; }
+.main-nav:not(.scrolled) .nav-links a:hover { color: rgba(255,255,255,0.8); }
+.nav-links { list-style: none; display: flex; margin: 0; padding: 0; gap: 30px; }
+.nav-links a { text-decoration: none; font-weight: bold; padding-bottom: 5px; position: relative; transition: color 0.3s; }
+.nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background-color: var(--primary-color); transform: scaleX(0); transform-origin: right; transition: transform 0.4s ease-out; }
+.nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+.menu-toggle { display: none; font-size: 1.8em; cursor: pointer; z-index: 1001; }
+.profile-image{width:180px;height:180px;border-radius:50%;border:6px solid #fff;box-shadow:0 4px 20px rgba(0,0,0,.25);object-fit:cover;margin-bottom:20px;transition:transform .3s ease}.profile-image:hover{transform:scale(1.05) rotate(3deg)}.header-title{font-family:var(--title-font);font-size:3em;margin:0}.header-subtitle{font-size:1.2em;margin:5px 0 20px}.header-description{max-width:600px;margin:0 auto 30px}.section{background-color:var(--surface-color);padding:50px;margin-bottom:40px;border-radius:20px;box-shadow:var(--shadow);transition:transform .3s ease,box-shadow .3s ease}.section:hover{transform:translateY(-5px);box-shadow:0 15px 40px -15px rgba(199, 139, 132, 0.3)}.section-title{font-family:var(--title-font);font-size:2em;font-weight:600;color:var(--secondary-color);margin-top:0;margin-bottom:30px;display:flex;align-items:center;gap:15px}.section-title svg{color:var(--primary-color)}.card{margin-bottom:25px;padding-left:25px;border-left:3px solid var(--primary-color)}.card h3{margin:0 0 5px;color:var(--secondary-color);font-size:1.2em}.card .card-subtitle{color:var(--primary-color);font-weight:700;display:block;margin-bottom:10px}.skills-list{display:flex;flex-wrap:wrap;gap:15px;padding:0;list-style-type:none}.contact-section{text-align:center}.contact-section p{font-size:1.1em;margin-bottom:25px}.contact-button{color:#fff;text-decoration:none;padding:15px 35px;border-radius:50px;font-size:1.1em;font-weight:700;display:inline-flex;align-items:center;gap:10px;transition:all .3s ease}.contact-button:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.2)}
+@media (max-width: 850px){.main-nav{padding:15px 20px}.menu-toggle{display:block}.nav-links{position:fixed;top:0;right:0;width:70%;height:100vh;background:#4a4a4a;flex-direction:column;justify-content:center;align-items:center;gap:40px;transform:translateX(100%);transition:transform .4s ease-in-out;z-index:1000}.nav-links.active{transform:translateX(0)}.nav-links a{font-size:1.3em;color:#fff}.header-container{padding-top:100px}.profile-image{width:150px;height:150px}.header-title{font-size:2.2em}.section{padding:30px}.section-title{font-size:1.8em}}
